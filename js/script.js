@@ -1,6 +1,5 @@
-/*
-    Regular Expression
-*/
+
+//    Regular Expression
 
 
 const str = "Cuelogic Technologies Pune!!! I work at Cuelogic";
@@ -129,3 +128,98 @@ console.log(Object.is(e1,e2));
 
 
 
+/* closure
+
+whenever the function is craeted the closure created
+inner function have access to the outer function
+
+*/
+
+function sayHii(){
+    let name="Aiman"
+    console.log("Hii "+name);
+    function sayHello(){
+        console.log("Hello "+name);
+    }
+
+    return sayHello;
+
+}
+
+let call1=sayHii();             //print Hii Aiman return the refernce of sayHello
+call1();                        //print Hello Aiman and it access the variable which is in outer scope due to closure
+                            
+
+
+
+//call by value and call by reference
+
+function addNum(a,b){
+    return a+b;
+}
+
+const addition=addNum(20,20);       //call by value
+console.log(addition);  
+
+
+function details(student){
+    return student.name="lemon";
+
+}
+
+const studObj={
+    name:"Aiman"
+}
+
+let studName=details(studObj);      //call by reference
+console.log(studName);              //return lemon here 
+
+
+
+
+/* JSON 
+    stringify(): used to convert JSON object to string
+    parse():used to convert string to JSON object
+*/
+
+const jsonObj={
+    name:"Aiman",
+    post:"Trainee"
+
+}
+let jsonstr=JSON.stringify(jsonObj);
+console.log(jsonstr)            //return string
+let newjsonobj=JSON.parse(jsonstr);
+console.log(newjsonobj);        //return object
+
+
+//eval()
+let a=20
+console.log(eval('2+2'));           //4
+console.log(eval('2*2'));           //4
+console.log(eval('a*2'));           //40
+
+
+
+
+
+
+/*hoisting
+
+in hoisting
+the function declaration are scan and they made avaliable
+the variable are sacn and they made undefined
+
+*/
+
+let name;
+
+function sayHello(){
+
+    console.log(name);
+    
+}
+
+sayHello();             //return undefined
+name="Aiman Shahbad";  
+sayHello();             //return name                  
