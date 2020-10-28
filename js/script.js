@@ -223,3 +223,168 @@ function sayHello(){
 sayHello();             //return undefined
 name="Aiman Shahbad";  
 sayHello();             //return name                  
+
+
+
+
+//synchronous
+
+function num1(){
+    console.log("1");
+
+}
+function num2(){
+    console.log("2");
+
+}
+num1();
+num2();
+
+
+/*Asynchronous
+here the num4 execute first bcz it require less time as comapred to num3*/
+
+
+// function num3(){
+//     setTimeout(() => {          
+//         console.log("3");
+//     }, 4000);
+    
+// }
+// function num4(){
+//     setTimeout(() => {
+//         console.log("4");
+//     }, 1000);
+// }
+// num3();
+// num4();
+
+/*callback
+
+when function is passed as an argument to the another function
+if you want to execute num3 first then passed num4 as an arugument (callback) to num3 
+
+*/
+
+// function num_3(num_4){
+//     setTimeout(() => {          
+//         console.log("3");
+//         num_4();
+//     }, 4000);
+    
+  
+    
+// }
+// function num_4(){
+//     setTimeout(() => {
+//         console.log("4");
+//     }, 1000);
+// }
+// num_3(num_4);
+
+
+/*callback hell
+1) after 2 sec access name of employee
+2)after 3 sec access post of employee
+3)after 2 sec access the language that the employee know
+
+*/
+
+// console.log("callbackhell");
+
+// function callbackhell(){
+//     const newemployee={
+//         name:"Aiman",
+//         post:"Trainee",
+//         language:["C","C++","Python"]
+//     };
+//     setTimeout((name) => {
+//         this.name=`The Employee Name is ${name}`;
+//         console.log(this.name);
+//         setTimeout((post) => {
+//             this.post=`Employee Post:${post}`;
+//             console.log(this.post);
+//             setTimeout((language) => {
+//                 this.language=`The fav language:${language}`;
+//                 console.log(this.language);
+//             }, 2000,newemployee.language[2]);
+            
+//         }, 3000,newemployee.post);
+
+//     }, 2000,newemployee.name);
+// }
+
+
+
+// callbackhell();
+
+
+/*promises
+1) after 2 sec access name of employee
+2)after 3 sec access post of employee
+3)after 2 sec access fav the language that the employee know
+*/
+
+console.log("Promise");
+function getEmployee(emp){
+    return new Promise(function(resolveName,rejectName){
+        setTimeout((emp) => {
+            if(emp.name==="Aiman Shahbad"){
+                const empname=`Name of Employee:${emp.name}`;
+                console.log(empname);
+                resolveName();
+            }
+            else{
+                rejectName();
+            }            
+        }, 2000,emp);
+
+    })
+
+}
+
+const newEmp={
+    name:"Aiman Shahbad",
+    post:"Trainee",
+    langauge:["C","C++","Python","Javascript"]
+}
+
+function getName(){
+    console.log("Succesfully Name Accessed");
+}
+
+function noName(){
+    console.log("Employee Name not fetched");
+}
+
+getEmployee(newEmp).then(getName).catch(noName);
+
+
+//Event
+let count=0;
+const plus=document.getElementById("plus");
+plus.addEventListener("click",()=>{
+    count=count+1;
+    const element=document.querySelector("ul");
+    const newElement=document.createElement("li");
+    newElement.textContent=count;
+    element.append(newElement);
+
+});
+
+const colors=["red","green","blue","pink","yellow","black"];
+
+const btn=document.getElementById("color");
+btn.addEventListener("click",()=>{
+    const body=document.querySelector("body");
+    let chgcolor=Math.random()*colors.length;
+    chgcolor=Math.round(chgcolor);
+    body.style.background=colors[chgcolor];
+
+    
+});
+
+
+
+
+
